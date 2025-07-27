@@ -1,0 +1,126 @@
+{
+  "members": [
+    {
+      "xp": 97,
+      "streak": 0,
+      "currentGoals": [
+        "Health: Focus on movement goals with running.",
+        "Family: Date nights, book clubs, and check-ins.",
+        "Business/Finance: Complete real estate exam and find a sponsor."
+      ],
+      "currentCommitments": [
+        "Commit to calling my brokers on Monday.",
+        "Get 100% on finance goals (actions and habits).",
+        "Complete 2 units in real estate course."
+      ],
+      "previousScore": "N/A",
+      "name": "Hannah",
+      "avatar": "avatars/Hannah.png"
+    },
+    {
+      "xp": 75,
+      "streak": 2,
+      "currentGoals": [
+        "Achieve 48 hours per week with a bricked phone.",
+        "Reach 20% body fat.",
+        "Go on 10 dates and attend 5 real estate meetups with my wife."
+      ],
+      "currentCommitments": [
+        "Finalize the dates with my wife.",
+        "Move funds from retirement account to business account for 3-flat work.",
+        "Complete another 24-hour fast."
+      ],
+      "previousScore": "64%",
+      "name": "Connor",
+      "avatar": "avatars/Connor.png"
+    },
+    {
+      "xp": 30,
+      "streak": 1,
+      "currentGoals": [],
+      "currentCommitments": [
+        "Commit to time blocking to figure out workout schedule.",
+        "Get to the gym 4 times a week for weight training.",
+        "Start getting out of the house earlier to create more time."
+      ],
+      "previousScore": "60%",
+      "name": "Brian",
+      "avatar": "avatars/Brian.png"
+    },
+    {
+      "xp": 124,
+      "streak": 7,
+      "currentGoals": [
+        "Achieve 16% body fat.",
+        "Write 40,000 words.",
+        "Complete our 3 year roadmap."
+      ],
+      "currentCommitments": [
+        "Journal every day at work during break time.",
+        "Work on incorporating other habits throughout the workday.",
+        "Do more work on the 3-year roadmap plan."
+      ],
+      "previousScore": "51%",
+      "name": "Jordan",
+      "avatar": "avatars/Jordan.png"
+    },
+    {
+      "xp": 85,
+      "streak": 4,
+      "currentGoals": [
+        "Health: Lose 20 pounds via fasting and 5x/week workouts.",
+        "Finance: Save $75,000, move assets into a trust, consider term life insurance.",
+        "Business: Have 5 inspectors on the team.",
+        "Personal: Plan two trips (New York and Tokyo) with wife."
+      ],
+      "currentCommitments": [
+        "Continue 18/6 fasting but with smaller portions.",
+        "Finish all Department of Health budget tasks before Friday.",
+        "Continue the permanent 3-day a week social media fast."
+      ],
+      "previousScore": "83%",
+      "name": "Lane",
+      "avatar": "avatars/Lane.png"
+    },
+    {
+      "xp": 30,
+      "streak": 0,
+      "currentGoals": [],
+      "currentCommitments": [],
+      "previousScore": "N/A",
+      "name": "James",
+      "avatar": "avatars/James.png"
+    },
+    {
+      "xp": 85,
+      "streak": 4,
+      "currentGoals": [
+        "Get real estate license by August 1st.",
+        "Lose 20 pounds or hit 32% body fat.",
+        "No social media on phone until September."
+      ],
+      "currentCommitments": [
+        "Make more time for real estate classes.",
+        "Buy a property in Freeport for $125k.",
+        "Work on the property drain line on Monday.",
+        "Write 2 thank you notes this week."
+      ],
+      "previousScore": "80%",
+      "name": "Jeremy",
+      "avatar": "avatars/Jeremy.png"
+    },
+    {
+      "xp": 0,
+      "streak": 0,
+      "currentGoals": [],
+      "currentCommitments": [],
+      "previousScore": "N/A",
+      "name": "Rob",
+      "avatar": "avatars/Rob.png"
+    }
+  ],
+  "nextCallContent": {
+    "dadJoke": "Why don't scientists trust atoms? Because they make up everything! [2]",
+    "intentionQuestion": "What's one relationship (personal or professional) you can intentionally invest in this week?"
+  }
+}

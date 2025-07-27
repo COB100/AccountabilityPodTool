@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accountability Pod Tool v3.11</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <header>
+    <nav id="main-nav">
+        <button class="btn" onclick="navigate('home')">Home</button>
+        <button class="btn" onclick="startCall()">Start Call</button>
+        <button class="btn" onclick="navigate('aiDataInput')">AI Data Input</button>
+    </nav>
+    <div style="margin-left: auto; display: flex; gap: 0.5em;"> <!-- For buttons on the right -->
+        <button class="btn" onclick="downloadMemberData()">Export Data</button>
+        <input type="file" id="import-file-input" accept=".json" style="display:none;">
+        <button class="btn" onclick="document.getElementById('import-file-input').click()">Import Data</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="section visible">
+      <h2>Leaderboard</h2>
+      <div id="leaderboard">Loading data...</div>
+    </section>
+
+    <section id="checkin" class="section">
+      <h2>Pod Check-In</h2>
+      <img id="checkin-mingle-avatar" src="avatars/avatarsmingle.png" class="right-align-image" alt="Avatars mingling"/>
+      <p><strong>Dad Joke:</strong> <span id="dad-joke"></span></p>
+      <p><strong>Intention Question:</strong> <span id="intention-q-display"></span></p>
+      <div id="attendance"></div>
+      <div id="call-order-display" style="margin-top: 1em; font-weight: bold;"></div>
+      <div class="timer" id="checkin-timer">05:00</div>
+      <div class="center-buttons">
+        <button class="btn" onclick="skipTimer('checkin-timer')">Skip Timer</button>
+        <button class="btn" id="checkin-next-button" onclick="finalizeAttendance()">Next</button>
+      </div>
+    </section>
+
+    <section id="intention" class="section">
+      <h2 id="intention-title">Intention Round</h2>
+      <h3 id="intention-name" style="text-align: center; margin-bottom: 0.5em;"></h3>
+      <img id="intention-avatar" class="avatar-large" alt="Member Avatar"/>
+      <p style="text-align:center;"><strong>Intention Question:</strong> <span id="intention-q-speaker"></span></p>
+      <div id="intention-stats" style="text-align:center; font-weight:bold; margin-bottom:1em;"></div>
+      <div class="timer" id="intention-timer">02:00</div>
+      <div class="center-buttons">
+        <button class="btn" onclick="skipTimer('intention-timer')">Skip Timer</button>
+        <button class="btn" onclick="nextIntention()">Next Member</button>
+      </div>
+    </section>
+
+    <section id="hotseat" class="section">
+      <h2 id="hotseat-title">Hot Seat</h2>
+      <h3 id="hotseat-name" style="text-align: center; margin-bottom: 0.5em;"></h3>
+      <img id="hotseat-avatar" class="avatar-large" alt="Member Avatar"/>
+      <div id="hotseat-details"></div>
+      <div class="timer" id="hotseat-timer">05:00</div>
+      <div class="center-buttons">
+        <button class="btn" onclick="skipTimer('hotseat-timer')">Skip Timer</button>
+        <button class="btn" onclick="nextHotSeat()">Next Member</button>
+      </div>
+    </section>
+
+    <section id="wrapup" class="section">
+      <h2>Final Wrap-Up</h2>
+      <img id="wrapup-win-avatar" src="avatars/avatarswin.png" class="right-align-image" alt="Avatars celebrating win"/>
+      <p><strong>Wrap-Up Prompt:</strong> Restate your final commitment and share any brief asks of the pod.</p>
+      <div class="timer" id="wrapup-timer">05:00</div>
+      <div class="center-buttons">
+        <button class="btn" onclick="skipTimer('wrapup-timer')">Skip Timer</button>
+        <button class="btn" onclick="navigate('home')">Return Home</button>
+      </div>
+    </section>
+
+    <section id="aiDataInput" class="section">
+      <h2>AI-Generated Data Input</h2>
+      <p>
+        <strong>Workflow:</strong>
+        <ol>
+          <li>Click "Generate AI Prompt" below. The prompt (with current member data) will appear.</li>
+          <li>Click "Copy Prompt" to copy it to your clipboard.</li>
+          <li>Go to your preferred AI tool (e.g., Google AI Studio with Gemini).</li>
+          <li>Paste your raw meeting transcript/summary, THEN paste the copied prompt below it.</li>
+          <li>Run the AI. It should output JSON. Copy that entire JSON output.</li>
+          <li>Paste the JSON output from your AI tool into the text area further below.</li>
+        </ol>
+      </p>
+      <div class="center-buttons">
+        <button class="btn" onclick="displayAIPrompt()">Generate AI Prompt</button>
+        <button class="btn" id="copy-prompt-btn" onclick="copyAIPrompt()" style="display:none;">Copy Prompt</button>
+      </div>
+      <pre id="ai-prompt-output" style="display:none; margin-top:1em; white-space: pre-wrap; background-color: #f0f0f0; border: 1px solid #ccc; padding: 10px; max-height: 300px; overflow-y: auto;"></pre>
+      
+      <h3 style="margin-top:2em;">Paste AI-Generated JSON Here:</h3>
+      <textarea id="ai-json-input" placeholder="Paste the structured JSON output from your AI tool here..."></textarea>
+      
+      <div class="gamification-rules">
+        <h4>Gamification Rules (For AI Prompt Reference):</h4>
+        <ul>
+          <li>Attend call: +10 XP</li>
+          <li>Complete Hot Seat: +5 XP</li>
+          <li>Insightful Question Winner: +3 XP (AI should add this to winner's total XP)</li>
+          <li>4-Week Attendance Streak Bonus: +10 XP (if new streak is multiple of 4)</li>
+          <li>Streak: +1 if present, 0 if missed.</li>
+        </ul>
+      </div>
+      <div class="center-buttons">
+        <button class="btn" id="json-submit-btn" onclick="submitAIData()">Submit AI Data</button>
+        <button class="btn" id="json-resubmit-btn" onclick="unlockAIJsonInput()" disabled>Clear Input</button>
+      </div>
+      <div id="ai-processing-status" style="margin-top: 1em; text-align:center; font-weight:bold;"></div>
+      <div id="save-data-prompt" style="margin-top:1em; text-align:center; display:none;">
+        <p>Data updated in memory. To save changes permanently:</p>
+        <button class="btn" onclick="downloadMemberData()">Download Updated Data File</button>
+        <p><small>Save the downloaded file as <code>accountability-pod-data.json</code> in your application folder, overwriting the existing one.</small></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
